@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Tibia Respawn Map Editor</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <link rel="stylesheet" href="css/chosen.min.css">
+        <link rel="stylesheet" href="css/main.css">
+    </head>
+    <body>
+        <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">Tibia Respawn Map Editor</a>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#palleteArea">
+                                    Pallete
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="palleteArea" class="panel-collapse collapse in" role="tabpanel">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <select data-placeholder="Select the monsters..." class="chosen-select" multiple tabindex="3" id="monster-list">
+                                        <option value=""></option>
+                                    </select>
+                                    <button class="update-pallete form-control">Update Pallete</button>
+                                </div>
+                                <div class="pallete"></div>
+                                <label>Selected</label>
+                                <div class="pallete-selected">None</div>
+                                <button class="pallete-add-to-box" data-name="Add to box">Add to box</button>
+                            </div>
+                        </div>
+                    </div>
+                    <h4>Current Box <button class="clear-box" data-name="Clear Box">Clear Box</button></h4>
+                    <div id="current-box" style="margin-bottom: 25px;"></div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#simulationSettings">
+                                    Settings
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="simulationSettings" class="panel-collapse collapse in" role="tabpanel">
+                            <div class="panel-body">
+                                <div class="form-group">
+                                    <label for="total-turns">Total Simulation Turns</label>
+                                    <input type="number" id="total-turns" value="10000" class="form-control" />
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="average-damage-1">Average Damage Auto Attack</label>
+                                            <input type="number" id="average-damage-1" value="350" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="damage-1-avg-mob-turn">Auto Attack Average Monsters per Turn</label>
+                                            <input type="number" id="damage-1-avg-mob-turn" value="8" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="damage-1-element">Element</label>
+                                            <select id="damage-1-element" class="form-control">
+                                                <option value="physical">Physical</option>
+                                                <option value="death">Death</option>
+                                                <option value="earth">Earth</option>
+                                                <option value="energy">Energy</option>
+                                                <option value="fire">Fire</option>
+                                                <option value="holy">Holy</option>
+                                                <option value="ice">Ice</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="average-spell-1">Average Damage Spell 1</label>
+                                            <input type="text" id="average-spell-1" value="250" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="spell-1-avg-mob-turn">Spell 1 Average Monsters per Turn</label>
+                                            <input type="number" id="spell-1-avg-mob-turn" value="8" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="spell-1-element">Element</label>
+                                            <select id="spell-1-element" class="form-control">
+                                                <option value="physical">Physical</option>
+                                                <option value="death">Death</option>
+                                                <option value="earth">Earth</option>
+                                                <option value="energy">Energy</option>
+                                                <option value="fire">Fire</option>
+                                                <option value="holy">Holy</option>
+                                                <option value="ice">Ice</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="average-spell-2">Average Damage Spell 2</label>
+                                            <input type="text" id="average-spell-2" value="0" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="spell-2-avg-mob-turn">Spell 2 Average Monsters per Turn</label>
+                                            <input type="number" id="spell-2-avg-mob-turn" value="8" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="spell-2-element">Element</label>
+                                            <select id="spell-2-element" class="form-control">
+                                                <option value="physical">Physical</option>
+                                                <option value="death">Death</option>
+                                                <option value="earth">Earth</option>
+                                                <option value="energy">Energy</option>
+                                                <option value="fire">Fire</option>
+                                                <option value="holy">Holy</option>
+                                                <option value="ice">Ice</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="average-spell-3">Average Damage Spell 3</label>
+                                            <input type="text" id="average-spell-3" value="0" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="spell-3-avg-mob-turn">Spell 3 Average Monsters per Turn</label>
+                                            <input type="number" id="spell-3-avg-mob-turn" value="8" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="spell-3-element">Element</label>
+                                            <select id="spell-3-element" class="form-control">
+                                                <option value="physical">Physical</option>
+                                                <option value="death">Death</option>
+                                                <option value="earth">Earth</option>
+                                                <option value="energy">Energy</option>
+                                                <option value="fire">Fire</option>
+                                                <option value="holy">Holy</option>
+                                                <option value="ice">Ice</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="average-spell-4">Average Damage Spell 4</label>
+                                            <input type="text" id="average-spell-4" value="0" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="spell-4-avg-mob-turn">Spell 4 Average Monsters per Turn</label>
+                                            <input type="number" id="spell-4-avg-mob-turn" value="8" class="form-control" />
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-4">
+                                        <div class="form-group">
+                                            <label for="spell-4-element">Element</label>
+                                            <select id="spell-4-element" class="form-control">
+                                                <option value="physical">Physical</option>
+                                                <option value="death">Death</option>
+                                                <option value="earth">Earth</option>
+                                                <option value="energy">Energy</option>
+                                                <option value="fire">Fire</option>
+                                                <option value="holy">Holy</option>
+                                                <option value="ice">Ice</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="box-seconds">Seconds between boxes</label>
+                                    <input type="number" id="box-seconds" value="12" class="form-control" />
+                                </div>
+                                <div class="runes">
+                                    <div class="form-group">
+                                        <label for="curse-rune">Curse</label>
+                                        <select id="curse-rune" class="form-control" data-element="death"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="divine-wrath-rune">Divine Wrath</label>
+                                        <select id="divine-wrath-rune" class="form-control" data-element="holy"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dodge-rune">Dodge</label>
+                                        <select id="dodge-rune" class="form-control" data-element="dodge"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="enflame-rune">Enflame</label>
+                                        <select id="enflame-rune" class="form-control" data-element="fire"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="freeze-rune">Freeze</label>
+                                        <select id="freeze-rune" class="form-control" data-element="ice"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="low-blow-rune">Low Blow</label>
+                                        <select id="low-blow-rune" class="form-control" data-element="low-blow"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="poison-rune">Poison</label>
+                                        <select id="poison-rune" class="form-control" data-element="earth"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="wound-rune">Wound</label>
+                                        <select id="wound-rune" class="form-control" data-element="physical"></select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="zap-rune">Zap</label>
+                                        <select id="zap-rune" class="form-control" data-element="energy"></select>
+                                    </div>
+                                </div>
+                                <button id="simulate" data-name="Simulate">Simulate</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="results"></div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" tabindex="-1" id="map-modal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-body">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+        <script src="js/jquery.js" type="text/javascript"></script>
+        <script src="js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="js/chosen.jquery.min.js" type="text/javascript"></script>
+        <script src="data/monsters.js" type="text/javascript"></script>
+        <script src="js/simulation.js" type="text/javascript"></script>
+
+    </body>
+</html>

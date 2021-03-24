@@ -1,0 +1,30 @@
+/* Always set the map height explicitly to define the size of the div
+* element that contains the map. */
+#map {
+    height: 800px;
+    max-height: 100%;
+}
+.map-full {
+    height: 100% !important;
+    width: 100% !important;
+    position: absolute;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    padding-top: 80px;
+}
+
+.update-pallete, .export-result, .import-button, .export-button
+{
+    margin-top: 20px;
+}
+
+#toolsArea button
+{
+    margin: 10px 0;
+}
