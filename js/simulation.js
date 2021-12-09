@@ -56,6 +56,8 @@ function applyDamage(box, damageObj)
     if (damage == 0)
         return totalDamage;
     var lowBlowDamage = damage;
+    var criticalDamage = 0;
+    var onslaughtDamage = 0;
     // checking lesser than 8 because it starts at 0
     if (getRandomIntInclusive(0, 100) < 8)
     {
@@ -63,12 +65,17 @@ function applyDamage(box, damageObj)
     }
     if (getRandomIntInclusive(0, 100) < 10)
     {
-        damage = damage * criticalMultiplier;
+        criticalDamage = damage * (criticalMultiplier - 1);
+        if(criticalDamage < 0)
+        {
+            criticalDamage = 0;
+        }
     }
     if (getRandomIntInclusive(0, 10000)/100 < onslaughtChance)
     {
-        damage = damage * 1.6;
+        onslaughtDamage = damage * .6;
     }
+    damage += criticalDamage + onslaughtDamage;
     box = shuffle(box);
     var hits = 0;
     for (var i = 0; i < box.length; i++) {
