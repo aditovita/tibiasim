@@ -56,13 +56,13 @@
                             <div class="panel-body">
                                 <div class="form-group">
                                     <label for="total-turns">Total Simulation Turns</label>
-                                    <input type="number" id="total-turns" value="10000" class="form-control" />
+                                    <input type="number" id="total-turns" value="40000" class="form-control" />
                                 </div>
                                 <div class="row">
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <label for="average-damage-1">Average Damage Auto Attack</label>
-                                            <input type="number" id="average-damage-1" value="350" class="form-control" />
+                                            <input type="number" id="average-damage-1" value="370" class="form-control" />
                                         </div>
                                     </div>
                                     <div class="col-xs-4">
@@ -90,7 +90,7 @@
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <label for="average-spell-1">Average Damage Spell 1</label>
-                                            <input type="text" id="average-spell-1" value="250" class="form-control" />
+                                            <input type="text" id="average-spell-1" value="340" class="form-control" />
                                         </div>
                                     </div>
                                     <div class="col-xs-4">
@@ -108,7 +108,7 @@
                                                 <option value="earth">Earth</option>
                                                 <option value="energy">Energy</option>
                                                 <option value="fire">Fire</option>
-                                                <option value="holy">Holy</option>
+                                                <option value="holy" selected>Holy</option>
                                                 <option value="ice">Ice</option>
                                             </select>
                                         </div>
@@ -118,7 +118,7 @@
                                     <div class="col-xs-4">
                                         <div class="form-group">
                                             <label for="average-spell-2">Average Damage Spell 2</label>
-                                            <input type="text" id="average-spell-2" value="0" class="form-control" />
+                                            <input type="text" id="average-spell-2" value="180" class="form-control" />
                                         </div>
                                     </div>
                                     <div class="col-xs-4">
@@ -137,7 +137,7 @@
                                                 <option value="energy">Energy</option>
                                                 <option value="fire">Fire</option>
                                                 <option value="holy">Holy</option>
-                                                <option value="ice">Ice</option>
+                                                <option value="ice" selected>Ice</option>
                                             </select>
                                         </div>
                                     </div>
@@ -200,7 +200,15 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="box-seconds">Seconds between boxes</label>
-                                    <input type="number" id="box-seconds" value="12" class="form-control" />
+                                    <input type="number" id="box-seconds" value="16" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="critical-multiplier">Critical Multiplier</label>
+                                    <input type="number" id="critical-multiplier" value="1.5" step="0.01" class="form-control" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="onslaught-chance">Onslaught chance</label>
+                                    <input type="number" id="onslaught-chance" value="0" step="0.01" class="form-control" />
                                 </div>
                                 <div class="runes">
                                     <div class="form-group">
@@ -245,6 +253,17 @@
                         </div>
                     </div>
                     <div id="results"></div>
+					 <div class="row">
+							<div class="col-xs-4">
+								<div class="form-group">
+									<input type="number" value="50" id="level-modifier" class="form-control" />
+								</div>
+							</div>
+							<div class="col-xs-4">
+								<button id="adjust-level" data-name="Simulate">Adjust Level</button>
+							</div>
+					</div>
+					
                 </div>
             </div>
         </div>

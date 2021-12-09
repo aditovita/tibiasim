@@ -7,6 +7,8 @@ var totalSimulationsTurns = 0;
 var lowProcs = 0;
 var minDanageModifier = 0.75;
 var maxDanageModifier = 1.25;
+var onslaughtChance = 0;
+var criticalMultiplier = 0;
 var currentBox = [];
 var charms = {};
 
@@ -61,7 +63,11 @@ function applyDamage(box, damageObj)
     }
     if (getRandomIntInclusive(0, 100) < 10)
     {
-        damage = damage * 1.5;
+        damage = damage * criticalMultiplier;
+    }
+    if (getRandomIntInclusive(0, 10000)/100 < onslaughtChance)
+    {
+        damage = damage * 1.6;
     }
     box = shuffle(box);
     var hits = 0;
@@ -161,13 +167,17 @@ function simulation()
             'auto': { 'hit': $('#average-damage-1').val(), 'aoe': $('#damage-1-avg-mob-turn').val(), 'element': $('#damage-1-element').val() },
             'spell': []
     };
-    for (var i = 1; i <= 4; i++) {
+	var i = 1;
+    while ($('#average-spell-' + i).length) {
         if( $('#average-spell-' + i).val() > 0 )
         {
             averageDamage.spell.push({ 'hit': $('#average-spell-' + i).val(), 'aoe': $('#spell-' + i + '-avg-mob-turn').val(), 'element': $('#spell-' + i + '-element').val() });
         }
+		i++;
     }
     totalSimulationsTurns = parseInt($('#total-turns').val());
+    onslaughtChance = parseFloat($('#onslaught-chance').val());
+    criticalMultiplier = parseFloat($('#critical-multiplier').val());
     var box = getNewBox();
     var totalDamageNoCharm = 0;
     var avoidedHitsNoCharm = 0;
@@ -309,6 +319,16 @@ $(document).ready(function () {
             $('#current-box').append('<button onclick="showInfo(this)"><img src="' + MapPallete.selected.image + '" data-name="' + MapPallete.selected.name + '" /></button>');
         }
     });
+	$('#adjust-level').on('click', function(){
+		$('#average-damage-1').val( parseInt($('#average-damage-1').val()) + parseInt($( '#level-modifier' ).val()/5)  );
+		var i = 1;
+		while( $('#average-spell-' + i).length ) {
+			if( $('#average-spell-' + i).val() > 0 )
+				$('#average-spell-' + i).val( parseInt($('#average-spell-' + i).val()) + parseInt($( '#level-modifier' ).val()/5)  );
+			i++;
+		}
+		simulation();
+	});
 
 });
 
